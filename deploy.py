@@ -590,7 +590,6 @@ print(from_sql)
 	plt.plot(tfav, color='r')
 	plt.plot(tfav, label="Likes", tret, label="Reweets", legend=True)
 	plt.show()
-
 """
 
 
