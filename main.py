@@ -192,41 +192,6 @@ if __name__ == "__main__":
 	main()
 
 
-
-"""
-with open('train.json', 'r') as fp:
-	cl = NaiveBayesClassifier(fp, format="json")
-
-cl.classify("Very damm positive sentence")
-
-prob_dist = cl.prob_classify("This one's a doozy.")
-prob_dist.max()
-
-round(prob_dist.prob("pos"), 2)
-
-round(prob_dist.prob("neg"), 2)
-
-from textblob import TextBlob
-blob = TextBlob("The beer is good. But the hangover is horrible.", classifier=cl)
-blob.classify()
-
-for s in blob.sentences:
-	print(s)
-	print(s.classify())
-
-cl.accuracy(test)
-cl.show_informative_features(5)  
-
-new_data = [('She is my best friend.', 'pos'),
-                ("I'm happy to have a new friend.", 'pos'),
-                ("Stay thirsty, my friend.", 'pos'),
-                ("He ain't from around here.", 'neg')]
-cl.update(new_data)
-
-cl.accuracy(test)
-"""
-
-
 """
 username='POTUS'
 url = 'https://www.twitter.com/' + username
@@ -261,72 +226,4 @@ CREATE TABLE Tweets_London (
 )
 ''')
 
-for tweet in tweets:
-    detected = detect(tweet.text)
-    cur.execute('''INSERT OR IGNORE INTO Tweets_GeoPLACE (
-        user_id, user_name, user_timezone, user_language, detected_language, tweet_text, tweet_created
-        ) 
-    VALUES ( ?,?,?,?,?,?,? )''', (tweet.user.id,tweet.user.screen_name,tweet.user.time_zone,tweet.user.lang,detected,tweet.text,tweet.created_at))
-    conn.commit()
 
-from_sql = pd.read_sql_query("SELECT * FROM Tweets_GeoPLACE;", conn)
-print(from_sql)
-"""
-
-
-"""
-	mean = np.mean(data['len'])
-
-	fav_max = np.max(data['Likes'])
-	rt_max  = np.max(data['RTs'])
-
-	fav = data[data.Likes == fav_max].index[0]
-	rt  = data[data.RTs == rt_max].index[0]
-
-	# Max FAVs:
-	print("\nAverage tweet length: {}".format(mean))
-	print("The tweet with more likes is: \n{}".format(data['Tweets'][fav]))
-	print("Number of likes: {}".format(fav_max))
-	print("{} characters.\n".format(data['len'][fav]))
-
-	# Max RTs:
-	print("The tweet with more retweets is: \n{}".format(data['Tweets'][rt]))
-	print("Number of retweets: {}".format(rt_max))
-	print("{} characters.\n".format(data['len'][rt]))
-
-	# create time series for data:
-
-	tlen = pd.Series(data=data['len'].values, index=data['Date'])
-	tfav = pd.Series(data=data['Likes'].values, index=data['Date'])
-	tret = pd.Series(data=data['RTs'].values, index=data['Date'])
-
-	#tlen.plot(figsize=(16,4), color='r');
-	#tlen.show()
-	plt.plot(tfav, color='r')
-	plt.plot(tfav, label="Likes", tret, label="Reweets", legend=True)
-	plt.show()
-
-	
-	sources = []
-	for source in data['Source']:
-		if source not in sources:
-			sources.append(source)
-
-
-	print("Creation of content sources:")
-		for source in sources:
-			print("* {}".format(source))
-
-	percent = np.zeros(len(sources))
-
-	for source in data['Source']:
-		for index in range(len(sources)):
-			if source == sources[index]:
-				percent[index] += 1
-				pass
-
-	percent /= 100
-
-	pie_chart = pd.Series(percent, index=sources, name='Sources')
-	pie_chart.plot.pie(fontsize=11, autopct='%.2f', figsize=(6, 6));
-"""
