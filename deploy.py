@@ -42,7 +42,7 @@ def banner():
 	print("     \::/  /                    \/__/         /:/  /    ")
 	print("      \/__/                                   \/__/     ")
 
-	print("                  Red Team Intelligence                 ")
+	print("\n                  Red Team Intelligence               ")
 
 	print("\n     https://github.com/zadewg/Election-Meddling  \n\n")
 
@@ -288,11 +288,6 @@ def main(screenname, num):
 	data['Date'] = np.array([tweet.timestamp for tweet in tweets])
 	data['Likes']  = np.array([tweet.likes for tweet in tweets])
 	data['RTs']	= np.array([tweet.retweets for tweet in tweets])
-
-	for tweet in data['Tweets'].head(1):
-		print("\nORIGINAL SAMPLE: {}".format(tweet))
-		print("\nSANITIZED SAMPLE: {}\n\n".format(data_preparation(tweet)))
-	
 	
 	data['SA'] = np.array([ analize_sentiment(tweet) for tweet in data['Tweets'] ])
 	display(data.head(100))
@@ -306,7 +301,12 @@ def main(screenname, num):
 	print("Percentage de negative tweets: {}%\n\n\n".format(len(neg_tweets)*100/len(data['Tweets'])))
 
 
-			
+
+#	for tweet in data['Tweets'].head(1):
+#		print("\n\nORIGINAL SAMPLE: {}".format(tweet))
+#		print("\nSANITIZED SAMPLE: {}\n\n".format(data_preparation(tweet)))
+		
+		
 	hillarySentiments = [0]
 	hillaryKeywords = ['hillary', 'clinton', 'hillaryclinton']
 
@@ -550,6 +550,7 @@ def main(screenname, num):
 
 	#CONTEMPLATED: drug, abortion, lgbt, war, social, healthcare, welfare
 	C2OUT = (Ydrugs + Yabortion + Ylgbt + Ywar + Ysocial + Yhealthcare + Ywelfare) / 7
+	#The conventional ideological buckets these positions fall into are social liberalism, fiscal conservatism, and opposition to foreign intervention- the primary features of libertarianism.
 
 
 	img = plt.imread("Nolan_chart_normal.png")
@@ -567,10 +568,10 @@ def main(screenname, num):
 
 
 
-def send_pro_vote_propaganda(target):
+def send_pro_vote_propaganda(target): #TODO
 	pass
 
-def send_pro_protest_propaganda(target):
+def send_pro_protest_propaganda(target): #TODO
 	pass
 
 
