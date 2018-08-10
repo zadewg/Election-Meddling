@@ -57,7 +57,7 @@ def parsein():
 	parser.add_argument('-b','--benefit', help='Political wing to benefit', required=True)
 	args = vars(parser.parse_args())
 
-	TARGETS = args['target']
+	TARGETS = [args['target']]
 	NUM = args['count']
 	BENEFIT = args['benefit']
 
